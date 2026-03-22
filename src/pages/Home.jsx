@@ -160,7 +160,7 @@ const Home = () => {
                   <iframe
                     src={`${BASE_URL}/certificate/pmrda-gov#toolbar=0`}
                     className="pdf-frame"
-                    title="Zone Certificate PDF"
+                    title="Zone Certificate PDF 1"
                   />
                 </div>
               </div>
