@@ -67,16 +67,13 @@ const Home = () => {
           <span className="link">FAQ</span>
           <span className="link">English</span>
           <span className="link">Marathi</span>
-
           <span className="greeting">{getGreeting()},</span>
           <span className="datetime">{formatTime(time)}</span>
-
           {/* <div className="menu-icon">
             <span></span>
             <span></span>
             <span></span>
           </div> */}
-
           <div
             className={`menu-icon ${menuOpen ? "open" : ""}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -85,7 +82,6 @@ const Home = () => {
             <span></span>
             <span></span>
           </div>
-
           {/* 🔥 DROPDOWN */}
           {menuOpen && (
             <div className="dropdown">
@@ -175,3 +171,5 @@ const Home = () => {
 };
 
 export default Home;
+
+// ..
