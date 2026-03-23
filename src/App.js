@@ -5,8 +5,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/zoneCertificateValidInvalid" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route
+          path="/ZC/zoneCertificateValidInvalid/appNo=ZC-0000-MU-2026-0-04520"
+          element={<Home />}
+        />
       </Routes>
     </BrowserRouter>
   );
