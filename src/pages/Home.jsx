@@ -135,7 +135,6 @@ const Home = () => {
                 <div className="mobile-inner">
                   <div className="mobile-id">226106</div>
 
-                  {/* 🔥 SAME BUTTON, JUST CHANGED LOGIC */}
                   <button
                     className="open-btn"
                     onClick={() => {
@@ -149,18 +148,8 @@ const Home = () => {
                   </button>
 
                   {/* 🔥 LOADER */}
-                  {pdfLoading && (
-                    <div className="pdf-loader">
-                      <div className="spinner"></div>
-                    </div>
-                  )}
 
                   {/* 🔥 PDF LOAD */}
-                  <iframe
-                    src={`https://pmrda-frontend.vercel.app/pmrda-gov.pdf#toolbar=0`}
-                    className="pdf-frame"
-                    onLoad={() => setPdfLoading(false)}
-                  />
                 </div>
               </div>
             </div>
