@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
 
-const BASE_URL = "https://pmrda-backend.onrender.com";
+// const BASE_URL = "https://pmrda-backend.onrender.com";
 
 const Home = () => {
   const [showPDF, setShowPDF] = useState(false);
@@ -138,10 +138,7 @@ const Home = () => {
                   {/* 🔥 SAME BUTTON, JUST CHANGED LOGIC */}
                   <button
                     className="open-btn"
-                    onClick={() => {
-                      setPdfLoading(true);
-                      setShowPDF(true);
-                    }}
+                    onClick={() => setPdfLoading(true)}
                   >
                     Open
                   </button>
@@ -155,7 +152,7 @@ const Home = () => {
 
                   {/* 🔥 PDF LOAD */}
                   <iframe
-                    src={`${BASE_URL}/certificate/pmrda-gov#toolbar=0`}
+                    src={`https://pmrda-frontend.vercel.app/pmrda-gov.pdf#toolbar=0`}
                     className="pdf-frame"
                     onLoad={() => setPdfLoading(false)}
                   />
@@ -183,7 +180,7 @@ const Home = () => {
                   )}
 
                   <iframe
-                    src={`${BASE_URL}/certificate/pmrda-gov#toolbar=0`}
+                    src={`https://pmrda-frontend.vercel.app/pmrda-gov.pdf#toolbar=0`}
                     className="pdf-frame"
                     title="Zone Certificate PDF 1"
                     onLoad={() => setPdfLoading(false)}
