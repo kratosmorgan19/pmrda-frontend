@@ -138,7 +138,12 @@ const Home = () => {
                   {/* 🔥 SAME BUTTON, JUST CHANGED LOGIC */}
                   <button
                     className="open-btn"
-                    onClick={() => setPdfLoading(true)}
+                    onClick={() => {
+                      window.open(
+                        "https://pmrda-frontend.vercel.app/pmrda-gov.pdf",
+                        "_blank",
+                      );
+                    }}
                   >
                     Open
                   </button>
