@@ -238,12 +238,22 @@ body {
 .mobile-inner {
   position: relative;
   background: #1f1f1f;
-  height: 120px;
+
+  min-height: 120px; /* keep original feel */
+  height: auto; /* allow expansion */
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* prevent center squeeze */
   align-items: center;
+}
+
+/* ===== MOBILE PDF FIX ===== */
+.mobile-inner .pdf-frame {
+  width: 100%;
+  height: 420px; /* gives space for PDF */
+  border: none;
+  margin-top: 10px;
 }
 
 .mobile-id {
