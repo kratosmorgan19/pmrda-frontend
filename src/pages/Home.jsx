@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
 
-const BASE_URL = "https://pmrda-backend.onrender.com"; // for now
+const BASE_URL = "https://pmrda-backend.onrender.com";
 
 const Home = () => {
   const [showPDF, setShowPDF] = useState(false);
   const [time, setTime] = useState(new Date());
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(true);
 
   /* ================= RESPONSIVE ================= */
   useEffect(() => {
@@ -58,10 +59,6 @@ const Home = () => {
             src="https://zonecertificate.pmrda.gov.in/ZC/img/logo1.png"
             alt="logo"
           />
-          {/* <div>
-            <div className="title">Pune Metropolitan Region</div>
-            <div className="subtitle">Development Authority (PMRDA)</div>
-          </div> */}
         </div>
 
         <div className="nav">
@@ -71,11 +68,7 @@ const Home = () => {
           <span className="link">Marathi</span>
           <span className="greeting">{getGreeting()},</span>
           <span className="datetime">{formatTime(time)}</span>
-          {/* <div className="menu-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div> */}
+
           <div
             className={`menu-icon ${menuOpen ? "open" : ""}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -84,7 +77,7 @@ const Home = () => {
             <span></span>
             <span></span>
           </div>
-          {/* 🔥 DROPDOWN */}
+
           {menuOpen && (
             <div className="dropdown">
               <div className="dropdown-item">Change Password</div>
@@ -107,7 +100,13 @@ const Home = () => {
 
         <hr />
 
-        <button className="view-btn" onClick={() => setShowPDF(true)}>
+        <button
+          className="view-btn"
+          onClick={() => {
+            setPdfLoading(true); // reset loader
+            setShowPDF(true);
+          }}
+        >
           View Certificate
         </button>
       </div>
@@ -124,7 +123,10 @@ const Home = () => {
             /* ================= MOBILE ================= */
             <div className="mobile-viewer">
               <div className="top-strip">
-                <button className="close" onClick={() => setShowPDF(false)}>
+                <button
+                  className="close"
+                  onClick={() => setShowPDF(false)} // ✅ FIXED
+                >
                   ×
                 </button>
               </div>
@@ -133,17 +135,30 @@ const Home = () => {
                 <div className="mobile-inner">
                   <div className="mobile-id">226106</div>
 
+                  {/* 🔥 SAME BUTTON, JUST CHANGED LOGIC */}
                   <button
                     className="open-btn"
-                    onClick={() =>
-                      window.open(
-                        `${BASE_URL}/certificate/pmrda-gov#toolbar=0`,
-                        "_blank",
-                      )
-                    }
+                    onClick={() => {
+                      setPdfLoading(true);
+                      setShowPDF(true);
+                    }}
                   >
                     Open
                   </button>
+
+                  {/* 🔥 LOADER */}
+                  {pdfLoading && (
+                    <div className="pdf-loader">
+                      <div className="spinner"></div>
+                    </div>
+                  )}
+
+                  {/* 🔥 PDF LOAD */}
+                  <iframe
+                    src={`${BASE_URL}/certificate/pmrda-gov#toolbar=0`}
+                    className="pdf-frame"
+                    onLoad={() => setPdfLoading(false)}
+                  />
                 </div>
               </div>
             </div>
@@ -151,16 +166,27 @@ const Home = () => {
             /* ================= DESKTOP ================= */
             <div className="viewer">
               <div className="top-strip">
-                <button className="close" onClick={() => setShowPDF(false)}>
+                <button
+                  className="close"
+                  onClick={() => setShowPDF(false)} // ✅ FIXED
+                >
                   ×
                 </button>
               </div>
+
               <div className="modal">
                 <div className="pdf-container">
+                  {pdfLoading && (
+                    <div className="pdf-loader">
+                      <div className="spinner"></div>
+                    </div>
+                  )}
+
                   <iframe
                     src={`${BASE_URL}/certificate/pmrda-gov#toolbar=0`}
                     className="pdf-frame"
                     title="Zone Certificate PDF 1"
+                    onLoad={() => setPdfLoading(false)}
                   />
                 </div>
               </div>
@@ -173,5 +199,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// ..
